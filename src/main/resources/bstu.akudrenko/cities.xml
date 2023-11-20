@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CitiesGroup>
+    <City Id="4">
+        <Name>Белгород</Name>
+        <Country>Россия</Country>
+        <Mayor>Валентин Демидов</Mayor>
+        <Population>
+            <CitizenName>Белгородец, белгородка</CitizenName>
+            <Size>333931</Size>
+        </Population>
+    </City>
+    <City Id="1">
+        <Country>Россия</Country>
+        <Mayor>Валентин Демидов</Mayor>
+        <Population>
+            <CitizenName>Белгородец, белгородка</CitizenName>
+            <Size>333931</Size>
+        </Population>
+    </City>
+</CitiesGroup>

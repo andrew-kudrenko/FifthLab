@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PublicLocationsGroup>
+    <Location Id="4">
+        <Title>БГТУ им.В.Г.Шухова</Title>
+        <Description>Универ</Description>
+        <Address>
+            <Country>Россия</Country>
+            <Settlement>Белгород</Settlement>
+            <Street>Костюкова</Street>
+            <Building>69</Building>
+        </Address>
+        <Kind>ВУЗ</Kind>
+    </Location>
+    <Location Id="5">
+        <Title>БелГУ</Title>
+        <Description>Универ</Description>
+        <Address>
+            <Country>Россия</Country>
+            <Settlement>Белгород</Settlement>
+            <Street>Студенческая</Street>
+            <Building>129</Building>
+        </Address>
+        <Kind>ВУЗ</Kind>
+    </Location>
+    <Location Id="11">
+        <Title>Площадь</Title>
+        <Description>Центральная площадь</Description>
+        <Address>
+            <Country>Россия</Country>
+            <Settlement>Белгород</Settlement>
+            <Street></Street>
+            <Building></Building>
+        </Address>
+        <Kind>Достопримечательность</Kind>
+    </Location>
+    <Location Id="8">
+        <Title>БУКЭП</Title>
+        <Description>Коопер</Description>
+        <Address>
+            <Country>Россия</Country>
+            <Settlement>Белгород</Settlement>
+            <Street>Костюкова</Street>
+            <Building>69</Building>
+        </Address>
+        <Kind>ВУЗ</Kind>
+    </Location>
+</PublicLocationsGroup>
