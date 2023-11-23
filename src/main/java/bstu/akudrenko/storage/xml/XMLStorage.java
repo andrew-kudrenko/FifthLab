@@ -2,7 +2,7 @@ package bstu.akudrenko.storage.xml;
 
 import bstu.akudrenko.models.Model;
 import bstu.akudrenko.storage.DocumentStorage;
-import bstu.akudrenko.xml.parsers.XMLReader;
+import bstu.akudrenko.xml.XMLReader;
 
 import java.io.File;
 import java.util.List;
@@ -10,12 +10,14 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class XMLStorage<M extends Model> extends DocumentStorage<M> {
-    private final File source = new File("src/main/resources/bstu.akudrenko/public_locations.xml");
-    private final XMLReader reader = new XMLReader(source);
+    private final File source;
+    private final XMLReader reader;
     private final Class cls;
 
-    public XMLStorage(Class cls) {
+    public XMLStorage(Class cls, String path) {
         this.cls = cls;
+        source = new File(path);
+        reader = new XMLReader(source);
     }
 
     public List<M> getAll() {
@@ -34,7 +36,6 @@ public class XMLStorage<M extends Model> extends DocumentStorage<M> {
 
     @Override
     public void removeById(int id) {
-
     }
 
     @Override

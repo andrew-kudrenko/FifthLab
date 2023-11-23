@@ -1,10 +1,8 @@
 package bstu.akudrenko.storage;
 
-import bstu.akudrenko.utils.ClassReflectionUtils;
-import bstu.akudrenko.xml.parsers.FromStringTypes;
+import bstu.akudrenko.utils.Tuple;
 
 import java.lang.reflect.Field;
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -16,13 +14,17 @@ public class ModelSearch {
         this.storage = storage;
     }
 
-    public <M> List<M> search(HashMap<Field, ?> values) {
+    public <M> List<M> search(HashMap<Field, Tuple<String, Object>> values) {
         return storage.where(m -> {
             AtomicBoolean isAllMatch = new AtomicBoolean(true);
 
-            values.forEach((f, v) -> {
+            values.forEach((f, entry) -> {
+                var v = entry.getSecond();
+
                 try {
-                    if (!f.get(m).equals(v)) {
+                    var deepField = deepGetField(m, entry.getFirst());
+
+                    if (deepField != null && !deepField.getSecond().equals(v)) {
                         isAllMatch.set(false);
                     }
                 } catch (Exception e) {
@@ -34,26 +36,22 @@ public class ModelSearch {
         });
     }
 
-    private <M> boolean isModelMatch(M model, List<AbstractMap.SimpleEntry<String, String>> values) {
-        return values.stream().allMatch(e -> isFieldValueMatch(model, e.getKey(), e.getValue()));
-    }
+    private <M> Tuple<Field, Object> deepGetField(M model, String path) {
+        var parts = path.split("\\.");
 
-    private <M> boolean isFieldValueMatch(M model, String fieldName, String rawValue) {
-        var cls = model.getClass();
+        try {
+            Field field = model.getClass().getField(parts[0]);
+            Object value = field.get(model);
 
-        if (ClassReflectionUtils.isPrimitive(cls)) {
-            try {
-                var field = cls.getField(fieldName);
-
-                if (field != null) {
-                    var parsedValue = FromStringTypes.resolve(field.getType(), rawValue);
-                    return field.get(model).equals(parsedValue);
-                }
-            } catch (Exception e) {
-                return false;
+            for (var i = 1; i < parts.length; i++) {
+                field = value.getClass().getField(parts[i]);
+                value = field.get(value);
             }
-        }
 
-        return false;
+            return Tuple.of(field, value);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
 }

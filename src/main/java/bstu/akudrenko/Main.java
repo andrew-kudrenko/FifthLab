@@ -1,11 +1,23 @@
 package bstu.akudrenko;
 
 import bstu.akudrenko.interact.AppMenu;
+import bstu.akudrenko.models.PublicLocation;
+import bstu.akudrenko.xml.XMLReader;
+import bstu.akudrenko.xml.XMLWriter;
+
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        var menu = new AppMenu();
+        var writer = new XMLWriter(
+            new File("src/main/resources/bstu.akudrenko/handled_public_locations.xml"),
+        "LocationGroup"
+        );
 
-        menu.poll();
+        var reader = new XMLReader(new File("src/main/resources/bstu.akudrenko/public_locations.xml"));
+
+        var models = reader.getAll(PublicLocation.class);
+        System.out.println(models.size());
+        writer.write(models);
     }
 }

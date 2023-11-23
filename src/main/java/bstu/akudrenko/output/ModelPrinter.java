@@ -26,6 +26,7 @@ public class ModelPrinter {
                             System.out.print(stringifyField(stringify, field, value, depth));
                         }
                     }
+                    System.out.println();
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }

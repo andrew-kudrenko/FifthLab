@@ -1,4 +1,6 @@
-package bstu.akudrenko.xml.parsers;
+package bstu.akudrenko.xml;
+
+import bstu.akudrenko.xml.parsers.SAXEventHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

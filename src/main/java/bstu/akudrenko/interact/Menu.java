@@ -7,12 +7,16 @@ import java.util.Scanner;
 public class Menu {
     private boolean isPolling;
     private Menu parent;
+    protected String delimiter = "_".repeat(20);
     protected final Scanner input = new Scanner(System.in);
-    protected final List<MenuAction> actions = getInitActions();
+    protected final List<MenuAction> actions = new ArrayList<>();
 
-    public Menu() {}
+    public Menu() {
+        initActions();
+    }
 
     public Menu(Menu parent) {
+        initActions();
         this.parent = parent;
     }
 
@@ -24,11 +28,9 @@ public class Menu {
         }
     }
 
-    protected List<MenuAction> getInitActions() {
-        var actions = new ArrayList<MenuAction>();
+    protected void initActions() {
+        actions.clear();
         actions.add(new MenuAction("Exit", this::exit));
-
-        return actions;
     }
 
     protected void printPrelude() {
@@ -36,10 +38,11 @@ public class Menu {
     }
 
     private void show() {
+        printDelimiter();
         for (int i = 0; i < actions.size(); i++) {
             printItem(actions.get(i), i);
         }
-
+        printDelimiter();
         printPrelude();
 
         var openAt = read();
@@ -75,8 +78,12 @@ public class Menu {
         }
     }
 
-    private void printItem(MenuAction action, int at) {
+    protected void printItem(MenuAction action, int at) {
         System.out.println(format(action, at));
+    }
+
+    protected void printDelimiter() {
+        System.out.println(delimiter);
     }
 
     private String format(MenuAction action, int at) {

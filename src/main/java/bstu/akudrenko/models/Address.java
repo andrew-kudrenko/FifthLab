@@ -6,7 +6,7 @@ import bstu.akudrenko.xml.bindings.BindXMLTag;
 
 @Stringify()
 @BindXMLEntity(alias = "Address")
-public class Address {
+public class Address extends Model {
     @BindXMLTag(alias = "Country")
     public String country;
 
