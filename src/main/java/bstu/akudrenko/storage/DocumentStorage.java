@@ -11,8 +11,7 @@ public abstract class DocumentStorage<M extends Model> {
     public abstract List<M> getAll();
 
     public abstract List<M> where(Predicate<M> predicate);
-
-    public abstract void removeById(int id);
-    public abstract void update(int id, Object updates);
+    public abstract void remove(int id);
+    public abstract void update(M model);
     public abstract void add(M model);
 }

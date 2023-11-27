@@ -1,4 +1,4 @@
-package bstu.akudrenko.xml.parsers;
+package bstu.akudrenko.storage.xml.parsers;
 
 import java.lang.reflect.Field;
 import java.util.Stack;
@@ -7,10 +7,10 @@ import java.util.function.Consumer;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
-import bstu.akudrenko.xml.bindings.BindXMLAttribute;
-import bstu.akudrenko.xml.bindings.BindXMLEntity;
-import bstu.akudrenko.xml.bindings.BindXMLNestedEntity;
-import bstu.akudrenko.xml.bindings.BindXMLTag;
+import bstu.akudrenko.storage.xml.bindings.BindXMLAttribute;
+import bstu.akudrenko.storage.xml.bindings.BindXMLEntity;
+import bstu.akudrenko.storage.xml.bindings.BindXMLNestedEntity;
+import bstu.akudrenko.storage.xml.bindings.BindXMLTag;
 
 public class SAXEventHandler<M> extends DefaultHandler {
     private boolean shouldStop;

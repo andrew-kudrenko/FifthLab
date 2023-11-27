@@ -1,9 +1,9 @@
 package bstu.akudrenko.models;
 
-import bstu.akudrenko.xml.bindings.BindXMLAttribute;
-import bstu.akudrenko.xml.bindings.BindXMLEntity;
-import bstu.akudrenko.xml.bindings.BindXMLNestedEntity;
-import bstu.akudrenko.xml.bindings.BindXMLTag;
+import bstu.akudrenko.storage.xml.bindings.BindXMLAttribute;
+import bstu.akudrenko.storage.xml.bindings.BindXMLEntity;
+import bstu.akudrenko.storage.xml.bindings.BindXMLNestedEntity;
+import bstu.akudrenko.storage.xml.bindings.BindXMLTag;
 
 @BindXMLEntity(alias = "City")
 public class City {

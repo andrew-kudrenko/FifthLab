@@ -1,6 +1,7 @@
-package bstu.akudrenko.xml;
+package bstu.akudrenko.storage.xml;
 
-import bstu.akudrenko.xml.parsers.SAXEventHandler;
+import bstu.akudrenko.models.Model;
+import bstu.akudrenko.storage.xml.parsers.SAXEventHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -26,7 +27,7 @@ public class XMLReader {
         }
     }
 
-    public <M> List<M> getAll(Class<M> cls) {
+    public <M extends Model> List<M> getAll(Class<M> cls) {
         var entities = new ArrayList<M>();
 
         var handler = new SAXEventHandler<>(cls);
@@ -39,7 +40,7 @@ public class XMLReader {
         }
     }
 
-    public <M> Optional<M> find(Class<M> cls, Predicate<M> predicate) {
+    public <M extends Model> Optional<M> find(Class<M> cls, Predicate<M> predicate) {
         AtomicReference<Optional<M>> found = new AtomicReference<>(Optional.empty());
 
         try {

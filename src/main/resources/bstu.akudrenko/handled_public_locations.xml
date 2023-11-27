@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <PublicLocationsGroup>
     <Location Id="1">
         <Title>БГТУ им.В.Г.Шухова</Title>
@@ -29,10 +29,17 @@
         <Settlement>Белгород</Settlement>
     </Location>
     <Location Id="5">
-        <Title>Кремль</Title>
-        <Description>Ядро Псковской крепости</Description>
-        <Kind>Достопримечательность</Kind>
+        <Title>Пск кремль</Title>
+        <Description>Псковский кром</Description>
+        <Kind>Крепость</Kind>
         <Country>Россия</Country>
         <Settlement>Псков</Settlement>
+    </Location>
+    <Location Id="20">
+        <Title>Мой дом</Title>
+        <Description>Родное жилище</Description>
+        <Kind>Дом</Kind>
+        <Country>Грёз</Country>
+        <Settlement>Лучший на Земле</Settlement>
     </Location>
 </PublicLocationsGroup>

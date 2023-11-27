@@ -1,10 +1,10 @@
-package bstu.akudrenko.xml.bindings;
+package bstu.akudrenko.storage.sql;
 
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target({ElementType.TYPE})
 @Inherited()
-public @interface BindXMLTag {
+public @interface BindSqlTableName {
     String alias() default "";
 }

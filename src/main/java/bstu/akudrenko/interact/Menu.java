@@ -11,21 +11,23 @@ public class Menu {
     protected final Scanner input = new Scanner(System.in);
     protected final List<MenuAction> actions = new ArrayList<>();
 
-    public Menu() {
-        initActions();
-    }
+    public Menu() {}
 
     public Menu(Menu parent) {
-        initActions();
         this.parent = parent;
     }
 
     public void poll() {
+        initActions();
         isPolling = true;
 
         while (isPolling) {
             show();
         }
+    }
+
+    public void addAction(MenuAction action) {
+        actions.add(action);
     }
 
     protected void initActions() {

@@ -1,8 +1,8 @@
 package bstu.akudrenko.models;
 
 import bstu.akudrenko.output.Stringify;
-import bstu.akudrenko.xml.bindings.BindXMLEntity;
-import bstu.akudrenko.xml.bindings.BindXMLTag;
+import bstu.akudrenko.storage.xml.bindings.BindXMLEntity;
+import bstu.akudrenko.storage.xml.bindings.BindXMLTag;
 
 @Stringify()
 @BindXMLEntity(alias = "Address")

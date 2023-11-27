@@ -1,20 +1,36 @@
 package bstu.akudrenko.interact;
 
-import bstu.akudrenko.models.PublicLocation;
+import bstu.akudrenko.storage.DocumentStorage;
+import bstu.akudrenko.storage.sql.SqlStorage;
 import bstu.akudrenko.storage.xml.XMLStorage;
 
 public class AppMenu extends Menu {
-    private SearchByFieldMenu searchMenu = new SearchByFieldMenu(
-            new XMLStorage(PublicLocation.class, "src/main/resources/bstu.akudrenko/public_locations.xml"));
+    private final DocumentStorage<?> xmlStorage;
+    private final DocumentStorage<?> sqlStorage;
+    private final Class cls;
+
+    public AppMenu(Class cls) {
+        this.cls = cls;
+
+        var path = "src/main/resources/bstu.akudrenko/handled_public_locations.xml";
+        xmlStorage = new XMLStorage(cls, path, "PublicLocationsGroup");
+        sqlStorage = new SqlStorage(cls);
+    }
 
     protected void initActions() {
         super.initActions();
 
-        actions.add(new MenuAction("Search by fields", () -> searchMenu.poll(PublicLocation.class)));
+        var xmlMenu = new StorageActionsMenu(xmlStorage, cls);
+        actions.add(new MenuAction("XML", () -> runMenuPolling(xmlStorage, xmlMenu)));
 
-        var nested = new Menu(this);
+        var sqlMenu = new StorageActionsMenu(sqlStorage, cls);
+        actions.add(new MenuAction("SQL", () -> runMenuPolling(sqlStorage, sqlMenu)));
+    }
 
-        nested.actions.add(new MenuAction("Print Nested hello!", () -> System.out.println(":)")));
-        actions.add(new MenuAction("Open Nested", nested::poll));
+    private void runMenuPolling(DocumentStorage storage, Menu menu) {
+        var searchMenu = new SearchByFieldMenu(storage);
+        menu.addAction(new MenuAction("Search by fields", () -> searchMenu.poll(cls)));
+
+        menu.poll();
     }
 }

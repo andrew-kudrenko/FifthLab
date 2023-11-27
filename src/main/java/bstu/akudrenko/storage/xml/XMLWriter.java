@@ -1,10 +1,10 @@
-package bstu.akudrenko.xml;
+package bstu.akudrenko.storage.xml;
 
 import bstu.akudrenko.models.Model;
-import bstu.akudrenko.xml.bindings.BindXMLAttribute;
-import bstu.akudrenko.xml.bindings.BindXMLEntity;
-import bstu.akudrenko.xml.bindings.BindXMLNestedEntity;
-import bstu.akudrenko.xml.bindings.BindXMLTag;
+import bstu.akudrenko.storage.xml.bindings.BindXMLAttribute;
+import bstu.akudrenko.storage.xml.bindings.BindXMLEntity;
+import bstu.akudrenko.storage.xml.bindings.BindXMLNestedEntity;
+import bstu.akudrenko.storage.xml.bindings.BindXMLTag;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -72,7 +72,9 @@ public class XMLWriter {
                 var element = document.createElement(binding.alias());
 
                 try {
-                    element.setTextContent(f.get(model).toString());
+                    var value= f.get(model);
+
+                    element.setTextContent(value != null ? f.get(model).toString() : "");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

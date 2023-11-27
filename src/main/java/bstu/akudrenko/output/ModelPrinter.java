@@ -19,7 +19,7 @@ public class ModelPrinter {
                     for (var field : model.getClass().getDeclaredFields()) {
                         var value = field.get(model);
 
-                        if (value.getClass().isAnnotationPresent(Stringify.class)) {
+                        if (value != null && value.getClass().isAnnotationPresent(Stringify.class)) {
                             System.out.println(getIndent(stringify, depth) + field.getName());
                             println(value, depth + 1);
                         } else {

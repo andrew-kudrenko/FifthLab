@@ -1,4 +1,4 @@
-package bstu.akudrenko.xml.bindings;
+package bstu.akudrenko.storage.xml.bindings;
 
 import java.lang.annotation.*;
 

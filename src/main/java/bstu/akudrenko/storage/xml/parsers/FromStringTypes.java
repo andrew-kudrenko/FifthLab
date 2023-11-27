@@ -1,4 +1,4 @@
-package bstu.akudrenko.xml.parsers;
+package bstu.akudrenko.storage.xml.parsers;
 
 import java.lang.reflect.Type;
 import java.util.function.Function;

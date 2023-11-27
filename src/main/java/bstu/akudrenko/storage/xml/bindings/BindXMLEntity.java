@@ -1,10 +1,10 @@
-package bstu.akudrenko.xml.bindings;
+package bstu.akudrenko.storage.xml.bindings;
 
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+@Target({ElementType.TYPE})
 @Inherited()
-public @interface BindXMLNestedEntity {
+public @interface BindXMLEntity {
     String alias() default "";
 }
