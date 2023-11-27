@@ -157,23 +157,23 @@ public class SqlStorage<M extends Model> extends DocumentStorage<M> {
 
     @Override
     public void add(M model) {
-        getAll().stream().max((a, b) -> {
-            try {
-                return (int)idField.get(a) - (int)idField.get(b);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }).ifPresent(entity -> {
-            try {
-                var id = (int)idField.get(entity);
-                idField.set(model, id + 1);
-                connection
-                    .prepareStatement(createAddQuery(model))
-                    .execute();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        try {
+            idField.set(model, getNextModelId(model));
+            connection
+                .prepareStatement(createAddQuery(model))
+                .execute();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void removeAll() {
+        try {
+            connection.prepareStatement("delete from %s".formatted(tableName)).execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private String createAddQuery(M model) {
@@ -186,8 +186,34 @@ public class SqlStorage<M extends Model> extends DocumentStorage<M> {
         }).toList());
 
         var query =  "insert into %s (%s) values (%s)".formatted(tableName, columns.getThird(), values);
-        System.out.println(query);
-
         return query;
+    }
+
+    protected int getNextModelId(M model) {
+        try {
+            var id = idField.get(model);
+
+            if (id != null && !id.equals(0)) {
+                return (int)id;
+            } else {
+                var all = getAll();
+
+                if (all.size() > 0) {
+                    var maxId = getAll().stream().max((a, b) -> {
+                        try {
+                            return (int) idField.get(a) - (int) idField.get(b);
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+
+                    return maxId.isPresent() ? (int)idField.get(maxId.get()) + 1 : 1;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 1;
     }
 }

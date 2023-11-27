@@ -1,45 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <PublicLocationsGroup>
+    <Location Id="69">
+        <Title>Ведьмин котелок</Title>
+        <Description>Бар с таро</Description>
+        <Kind>Бар</Kind>
+        <Country>Россия</Country>
+        <Settlement>Белгород</Settlement>
+    </Location>
     <Location Id="1">
+        <Title>The Cock</Title>
+        <Description>Тоже забегаловка</Description>
+        <Kind>Бар</Kind>
+        <Country>Россия</Country>
+        <Settlement>Родной город</Settlement>
+    </Location>
+    <Location Id="70">
+        <Title>Нора</Title>
+        <Description>
+        </Description>
+        <Kind>
+        </Kind>
+        <Country>
+        </Country>
+        <Settlement>
+    </Settlement>
+    </Location>
+    <Location Id="71">
+        <Title>Декабрист</Title>
+        <Description>
+        </Description>
+        <Kind>Бар</Kind>
+        <Country>
+        </Country>
+        <Settlement>
+    </Settlement>
+    </Location>
+    <Location Id="72">
         <Title>БГТУ им.В.Г.Шухова</Title>
         <Description>Универ</Description>
         <Kind>ВУЗ</Kind>
         <Country>Россия</Country>
         <Settlement>Белгород</Settlement>
     </Location>
-    <Location Id="6">
+    <Location Id="73">
         <Title>БелГУ</Title>
         <Description>Универ</Description>
         <Kind>ВУЗ</Kind>
         <Country>Россия</Country>
         <Settlement>Белгород</Settlement>
     </Location>
-    <Location Id="18">
+    <Location Id="74">
         <Title>Кремль</Title>
         <Description>Городская крепость</Description>
         <Kind>Достопримечательность</Kind>
         <Country>Россия</Country>
         <Settlement>Москва</Settlement>
     </Location>
-    <Location Id="3">
+    <Location Id="75">
         <Title>Набережная</Title>
         <Description>Набережная реки Везелка</Description>
         <Kind>Место отдыха</Kind>
         <Country>Россия</Country>
         <Settlement>Белгород</Settlement>
-    </Location>
-    <Location Id="5">
-        <Title>Пск кремль</Title>
-        <Description>Псковский кром</Description>
-        <Kind>Крепость</Kind>
-        <Country>Россия</Country>
-        <Settlement>Псков</Settlement>
-    </Location>
-    <Location Id="20">
-        <Title>Мой дом</Title>
-        <Description>Родное жилище</Description>
-        <Kind>Дом</Kind>
-        <Country>Грёз</Country>
-        <Settlement>Лучший на Земле</Settlement>
     </Location>
 </PublicLocationsGroup>

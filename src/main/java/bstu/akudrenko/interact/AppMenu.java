@@ -1,12 +1,13 @@
 package bstu.akudrenko.interact;
 
+import bstu.akudrenko.models.Model;
 import bstu.akudrenko.storage.DocumentStorage;
 import bstu.akudrenko.storage.sql.SqlStorage;
 import bstu.akudrenko.storage.xml.XMLStorage;
 
 public class AppMenu extends Menu {
-    private final DocumentStorage<?> xmlStorage;
-    private final DocumentStorage<?> sqlStorage;
+    private final DocumentStorage<Model> xmlStorage;
+    private final DocumentStorage<Model> sqlStorage;
     private final Class cls;
 
     public AppMenu(Class cls) {
@@ -25,7 +26,16 @@ public class AppMenu extends Menu {
 
         var sqlMenu = new StorageActionsMenu(sqlStorage, cls);
         actions.add(new MenuAction("SQL", () -> runMenuPolling(sqlStorage, sqlMenu)));
+
+        actions.add(new MenuAction("XML -> SQL", () -> convert(xmlStorage, sqlStorage)));
+        actions.add(new MenuAction("SQL -> XML", () -> convert(sqlStorage, xmlStorage)));
     }
+
+    private <M extends Model> void convert(DocumentStorage<M> source, DocumentStorage<M> dest) {
+        dest.removeAll();
+        source.getAll().forEach(dest::add);
+    }
+
 
     private void runMenuPolling(DocumentStorage storage, Menu menu) {
         var searchMenu = new SearchByFieldMenu(storage);

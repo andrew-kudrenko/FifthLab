@@ -14,4 +14,6 @@ public abstract class DocumentStorage<M extends Model> {
     public abstract void remove(int id);
     public abstract void update(M model);
     public abstract void add(M model);
+
+    public abstract void removeAll();
 }
